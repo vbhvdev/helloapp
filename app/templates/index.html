@@ -1,0 +1,33 @@
+<!-- <html>
+    <head>
+        <title>{{ title }}</title>
+    </head>
+    <body>
+        <div>HelloApp: <a href="/">Home</a></div>
+        <hr>
+        {% if user %}
+        <h1>Hello {{user}}!!!</h1>
+        {% else %}
+        <h1>Hello World!!!</h1>
+        {% endif %}
+    </body>
+</html> -->
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% if user %}
+    
+    <h1>Hello {{ user }}!!!</h1>
+    <p><strong>Age:</strong> {{ age }}</p>
+    <p><strong>Email:</strong> {{ email }}</p>
+    
+    {% else %}
+    
+    <h1>Hello World!!!</h1>
+    
+    {% endif %}
+
+{% endblock %}

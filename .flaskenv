@@ -1,0 +1,2 @@
+FLASK_APP=helloapp.py
+FLASK_DEBIG=1
