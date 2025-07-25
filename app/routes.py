@@ -1,5 +1,7 @@
-from flask import redirect, url_for, render_template
-from app import app
+from flask import redirect, url_for, render_template, request, flash 
+from app import app, db
+from app.forms import UserForm
+from app.models import User
 
 user_data = {
         'John': {'age': 28, 'email': 'john@example.com'},
@@ -37,5 +39,21 @@ def display_age(username, age):
 @app.route('/greet/user/<uname>')
 def greet_user(uname):
     return redirect(url_for('hello_user', username=uname))
+
+@app.route('/adduser', methods = ['GET', 'POST'])
+def useradd():
+    form = UserForm()
+    if request.method == 'POST':
+        user = User(username=form.username.data, age=form.age.data, email=form.email.data)
+        try:
+            db.session.add(user)
+            db.session.commit()
+            flash(f'{form.username.data} User added successfully!', 'success')
+        except Exception as e:
+            db.session.rollback()
+            flash(f'Error adding user: {str(e)}', 'danger')
+        return redirect(url_for('hello'))
+        
+    return render_template('adduser.html', form = form)
 
 # print(app.url_map)
