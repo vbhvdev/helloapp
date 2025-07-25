@@ -1,4 +1,4 @@
-from flask import redirect, url_for, render_template, request, flash 
+from flask import redirect, url_for, render_template, request, flash
 from app import app, db
 from app.forms import UserForm
 from app.models import User
@@ -16,7 +16,7 @@ user_data = {
 # def hello():
 #     return "Hello World!!!"
 def hello():
-    return render_template('index.html', title = 'HelloApp')
+    return render_template('index.html', page_name = 'Home')
 
 
 @app.route('/user/<username>')
@@ -24,12 +24,12 @@ def hello():
 #     return f'Hello {username}!!!'
 def hello_user(username):
     user_dtls = user_data.get(username, {'age': 'Unknown', 'email': 'Not available'})
-    return render_template('index.html', title='HelloApp: User', user=username, age=user_dtls['age'], email=user_dtls['email'])
+    return render_template('index.html', page_name ='User', user=username, age = user_dtls['age'], email = user_dtls['email'])
 
 
 @app.route('/users/')
 def display_users():
-    return render_template('users.html', title ='HelloApp: Users', users=user_data.keys())
+    return render_template('users.html', page_name ='Users', users=user_data.keys())
 
 
 @app.route('/user/<username>/<int:age>')

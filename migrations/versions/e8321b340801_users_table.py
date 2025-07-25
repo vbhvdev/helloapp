@@ -1,8 +1,8 @@
 """users table
 
-Revision ID: 7b29697e7333
+Revision ID: e8321b340801
 Revises: 
-Create Date: 2025-07-09 21:21:42.776836
+Create Date: 2025-07-25 23:00:16.299810
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7b29697e7333'
+revision = 'e8321b340801'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,7 +28,7 @@ def upgrade():
     with op.batch_alter_table('user', schema=None) as batch_op:
         batch_op.create_index(batch_op.f('ix_user_age'), ['age'], unique=False)
         batch_op.create_index(batch_op.f('ix_user_email'), ['email'], unique=True)
-        batch_op.create_index(batch_op.f('ix_user_username'), ['username'], unique=False)
+        batch_op.create_index(batch_op.f('ix_user_username'), ['username'], unique=True)
 
     # ### end Alembic commands ###
 

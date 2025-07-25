@@ -1,33 +1,22 @@
-<!-- <html>
-    <head>
-        <title>{{ title }}</title>
-    </head>
-    <body>
-        <div>HelloApp: <a href="/">Home</a></div>
-        <hr>
-        {% if user %}
-        <h1>Hello {{user}}!!!</h1>
-        {% else %}
-        <h1>Hello World!!!</h1>
-        {% endif %}
-    </body>
-</html> -->
-
-
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
-
-    {% if user %}
-    
-    <h1>Hello {{ user }}!!!</h1>
-    <p><strong>Age:</strong> {{ age }}</p>
-    <p><strong>Email:</strong> {{ email }}</p>
-    
-    {% else %}
-    
-    <h1>Hello World!!!</h1>
-    
-    {% endif %}
-
+    <div class="text-center">
+        <h2 class="mb-3">Welcome to the HelloApp</h2>
+        {% if user %}
+            <div class="card mx-auto" style="max-width: 400px;">
+            <div class="card-body">
+                <h4 class="card-title mb-3">Hello, {{ user }} 👋</h4>
+                <p class="card-text"><strong>Age:</strong> {{ age }}</p>
+                <p class="card-text"><strong>Email:</strong> {{ email }}</p>
+            </div>
+        </div>
+        <p class="mt-4 text-muted">
+            Want to meet others? <a href="{{ url_for('display_users') }}">See all users →</a>
+        </p>
+        {% else %}
+            <p class="lead text-muted">You're on the home page — feel free to explore.</p>
+            <p class="text-muted">Check out who's joined us on the <a href="{{ url_for('display_users') }}">Users page</a>.</p>
+        {% endif %}
+    </div>
 {% endblock %}

@@ -1,39 +1,13 @@
-<!-- <html>
-
-    <head>
-
-        <title>{{title}}</title>
-
-    </head>
-
-    <body>
-
-        <div>HelloApp: <a href="/">Home</a></div>
-
-        <hr>
-
-        <h1> Users of the Application</h1>
-
-        {% for user in users %}
-
-        <li> <a href='/user/{{user}}'> {{user}} </a></li>
-
-        {% endfor %}
-
-    </body>
-
-</html> -->
-
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
-
-    <h1>Users of the Application</h1>
-
-    {% for user in users %}
-
-    <li><a href="/user/{{user}}">{{ user }}</a></li>
-
-    {% endfor %}
-
+    <div class="text-center">
+        <h2 class="mb-3">Meet Our Users</h2>
+        <p class="text-muted">Here's a quick look at some of the people who've joined us:</p>
+    </div>
+    <ul class="list-group list-group-flush mt-4">
+        {% for user in users %}
+            <li class="list-group-item"><a href="{{ url_for('hello_user',username=user) }}">{{ user }}</a></li>
+        {% endfor %}
+    </ul>
 {% endblock %}
